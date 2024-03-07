@@ -1,7 +1,7 @@
 from Models.Match import Match
 
+
 class MatchController:
-    
     def __init__(self):
         pass
 
@@ -16,7 +16,6 @@ class MatchController:
             list: Une liste de paires de joueurs.
         """
         return list(zip(players[::2], players[1::2]))
-
 
     def create_matches(self, pairs):
         """
@@ -83,8 +82,8 @@ class MatchController:
         player2_name = player2['first_name'] + ' ' + player2['last_name']
 
         for match in played_matches:
-            players_in_match = [m[0] for m in match]
-            if player1_name in players_in_match and player2_name in players_in_match:
+            # Vérifie si les noms des joueurs sont dans les noms des joueurs du match
+            if (player1_name == match.player1['first_name'] + ' ' + match.player1['last_name'] and
+                player2_name == match.player2['first_name'] + ' ' + match.player2['last_name']):
                 return True
         return False
-

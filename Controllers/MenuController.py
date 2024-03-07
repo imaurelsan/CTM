@@ -46,7 +46,8 @@ class MenuController:
 
     def report_menu_choice(self):
         """
-        Gère le choix de l'utilisateur dans le sous-menu des rapports et appelle les méthodes correspondantes.
+        Gère le choix de l'utilisateur dans le sous-menu des rapports et appelle
+        les méthodes correspondantes.
         """
         choice = self.menu.report_menu()
 
@@ -64,13 +65,13 @@ class MenuController:
                 players = self.report_controller.tournament_players_alphabetical()
                 self.report_view.display_tournament_players_alphabetical(players)
             case '5':
-                (tournament_name,
-                 rounds_list,
-                 tournament_id) = (
-                    self.report_controller.get_tournament_rounds_and_matches())
-                players_sorted = (
-                    self.report_controller.get_tournament_players_sorted(tournament_id))
-                self.report_view.display_rounds_and_matches(tournament_name, rounds_list, players_sorted)
+                (tournament_name, rounds_list, tournament_id) \
+                    = self.report_controller.get_tournament_rounds_and_matches()
+                players_sorted = self.report_controller.get_tournament_players_sorted(tournament_id)
+                self.report_view.display_rounds_and_matches(
+                    tournament_name,
+                    rounds_list,
+                    players_sorted)
             case '0':
                 return  # MAIN MENU
             case _:

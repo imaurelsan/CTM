@@ -2,7 +2,7 @@
 
 class MatchView:
     def display_match_results(self, match, match_number, round_number):
-        
+
         # Affiche les résultats possibles pour un match donné.
 
         # Args:
@@ -12,7 +12,7 @@ class MatchView:
 
         # Returns:
         #     int: Le choix de l'utilisateur pour le résultat du match (1, 2 ou 3).
-        
+
         print(f"Match {match_number} Round {round_number} - Résultats")
         print(f"1 - {match.player1['first_name']} {match.player1['last_name']}")
         print(f"2 - {match.player2['first_name']} {match.player2['last_name']}")
@@ -23,7 +23,6 @@ class MatchView:
         return user_choice
 
     def get_user_choice(self):
-        
         # Invite l'utilisateur à entrer son choix (1, 2 ou 3) et valide l'entrée.
 
         # Returns:
@@ -31,7 +30,6 @@ class MatchView:
 
         # Note:
         #     Cette méthode continue d'inviter l'utilisateur jusqu'à ce qu'un choix valide soit entré.
-        
         while True:
             try:
                 choice = int(input("Entrez votre choix (1, 2 ou 3): "))

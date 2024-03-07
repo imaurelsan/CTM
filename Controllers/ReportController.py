@@ -1,6 +1,5 @@
 from Models.Report import Report
 
-
 class ReportController:
     def __init__(self):
         pass
@@ -12,11 +11,9 @@ class ReportController:
         Returns:
             list: Liste des joueurs triés par ordre alphabétique.
         """
-        report = Report()
-        players = report.load_players()
+        players = Report.load_players(self)
         sorted_players = sorted(players, key=lambda x: (x['last_name'], x['first_name']))
         return sorted_players
-
 
     def list_tournaments(self):
         """
@@ -25,8 +22,8 @@ class ReportController:
         Returns:
             list: Liste des tournois.
         """
-        report = Report()
-        return report.load_tournaments()
+        tournaments = Report.load_tournaments(self)
+        return tournaments
 
     def select_tournament_from_list(self):
         """
@@ -35,8 +32,7 @@ class ReportController:
         Returns:
             dict: Le tournoi sélectionné.
         """
-        report = Report()
-        tournaments = report.load_tournaments()
+        tournaments = self.list_tournaments()
 
         for i, tournament in enumerate(tournaments):
             print(f"{i + 1}. {tournament['name']}")
@@ -53,7 +49,8 @@ class ReportController:
 
     def tournament_players_alphabetical(self):
         """
-        Charge la liste des joueurs pour un tournoi spécifique, triée par ordre alphabétique de nom puis de prénom.
+        Charge la liste des joueurs pour un tournoi spécifique, triée par
+        ordre alphabétique de nom puis de prénom.
 
         Returns:
             list: Liste des joueurs du tournoi triés par ordre alphabétique.
@@ -71,12 +68,16 @@ class ReportController:
             tuple: Tuple contenant le nom du tournoi, la liste de ses tours et son ID.
         """
         tournament = self.select_tournament_from_list()
-        return tournament['name'], tournament['round_list'], tournament['id']
-
+        return (
+            tournament['name'],
+            tournament['round_list'],
+            tournament['id']
+        )
 
     def get_tournament_players_sorted(self, tournament_id):
         """
-        Charge et retourne la liste des joueurs pour un tournoi spécifié, triée par leur score en ordre décroissant.
+        Charge et retourne la liste des joueurs pour un tournoi spécifié, triée par leur score
+        en ordre décroissant.
 
         Args:
             tournament_id (int): L'ID du tournoi dont on souhaite obtenir la liste des joueurs.
@@ -84,11 +85,10 @@ class ReportController:
         Returns:
             list: Liste des joueurs du tournoi triés par score en ordre décroissant.
         """
-        report = Report()
+        report = Report
         tournaments = report.load_tournaments()
 
         for tournament in tournaments:
             if tournament["id"] == tournament_id:
                 return sorted(tournament["player_list"], key=lambda x: x["score"], reverse=True)
         return []
-

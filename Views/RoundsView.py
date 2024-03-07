@@ -1,7 +1,5 @@
 
-
 class RoundsView:
-
 
     def ask_for_next_round(self):
         """
@@ -10,7 +8,4 @@ class RoundsView:
         Returns:
             str: Réponse de l'utilisateur (o pour oui, n pour non).
         """
-        return input( "Voulez vous passer au round suivant ? o/n: " ).strip().lower()
-    
-
-
+        return input("Voulez vous passer au round suivant ? o/n: ").strip().lower()
